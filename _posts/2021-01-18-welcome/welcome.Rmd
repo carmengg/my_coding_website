@@ -1,7 +1,7 @@
 ---
 title: "welcome"
 description: |
-  A short description of the post.
+  This is my first blog post :)
 author:
   - name: Carmen Edith Galaz García
 date: 01-18-2021
