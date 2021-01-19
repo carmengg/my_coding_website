@@ -16,6 +16,6 @@ output:
 I am a Mathematics PhD candidate at the University of California, Santa Barbara.  
 Currently I am learning about Environmental Data Science by  taking classes at UCSB's Bren School of Environmental Science and Management. 
 
-After obtaining my PhD I would like to use my mathematics and coding background to become part of an interdisciplinary research group that addresses environmental issues. 
+After obtaining my PhD I would like to use my mathematics and coding background to become part of an interdisciplinary working group that addresses environmental issues. 
 
 In my free time I love birding and trying out new hiking trails in Santa Barbara. 
