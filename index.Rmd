@@ -1,18 +1,21 @@
 ---
-title: "CGG website"
-description: |
-  Welcome to the website. I hope you enjoy it!
+title: "Carmen Galaz-García"
+image: "foto3.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/carmengalazgarcia/"
+  - label: GitHub
+    url: "https://github.com/carmengg"
+  - label: Email
+    url: "mailto:carmengg@math.ucsb.edu"
 site: distill::distill_website
+output:
+  postcards::trestles
 ---
+ 
+I am a Mathematics PhD candidate at the University of California, Santa Barbara.  
+Currently I am learning about environmental data science taking classes at UCSB's Bren School of Environmental Science and Management. 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+After obtaining my PhD I would like to use my mathematics and coding background to become part of an interdisciplinary research group that addresses environmental issues. 
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
-```
-
+In my free time I love birding and trying out new hiking trails in Santa Barbara. 
