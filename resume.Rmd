@@ -1,8 +1,9 @@
 ---
-output:
-  html_document:
-    toc: true  # make a table of contents
-    toc_float: true  # table of contents as sidebar
+title: "Resume"
+#output:
+  # html_document:
+  #   toc: true  # make a table of contents
+  #   toc_float: true  # table of contents as sidebar
 ---
 
 <center>
