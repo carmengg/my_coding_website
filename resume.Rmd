@@ -24,7 +24,6 @@ e-mail: carmengg@math.ucsb.edu
 
 
 ## SUMMARY
-___
 
 PhD candidate looking to gain hands-on experience in management and analysis of environmental data.
 
@@ -39,11 +38,9 @@ PhD candidate looking to gain hands-on experience in management and analysis of 
 * Strong interest in Environmental and Data Science.
 
 <br>
-<br>
 
 
 ## EDUCATION
-___
 
 **Ph.D. in Mathematics**   (Expected July 2021)
 
@@ -60,11 +57,9 @@ ___
 * Study abroad semester: Uppsala University, Sweden
 
 <br> 
-<br>
 
 ## RESEARCH EXPERIENCE
 
----
 
 **University of California, Santa Barbara**, CA    (June 2017 - present)
 
@@ -95,11 +90,9 @@ ___
 * Collaborated with computer scientists and mathematicians in developing geometric combinatorial tools.
 
 <br>
-<br>
 
 ## SKILLS AND INTERESTS
 
----
 
 **Programming & software:** Python, R, C++, LaTeX, GitHub 
 
@@ -108,11 +101,9 @@ ___
 **Interests:** Bird watching, hiking, yoga
 
 <br>
-<br>
 
 ## TEACHING EXPERIENCE
 
----
 
 **University of California, Santa Barbara**, CA
 
@@ -148,11 +139,9 @@ Center for Science and Engineering Partnerships**, CA
 * Facilitated communication between the mathematics instructors and the program organizers.
 
 <br>
-<br>
 
 ## LEADERSHIP EXPERIENCE
 
----
 
 **Mathematics Directed Reading Program at UCSB (DRP)**
 
@@ -177,11 +166,9 @@ Center for Science and Engineering Partnerships**, CA
 * Managed funding and worked in close contact with administrative staff.
 
 <br>
-<br>
 
 ## MENTORING & OUTREACH
 
----
 
 **Mathematics Department, UCSB**   (2018- 2020)
 
