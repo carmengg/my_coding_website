@@ -1,12 +1,9 @@
 ---
-output: 
+output:
   html_document:
     toc: true  # make a table of contents
     toc_float: true  # table of contents as sidebar
 ---
-
-<br>
-<br>
 
 <center>
 <font size="12">
