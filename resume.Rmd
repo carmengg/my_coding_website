@@ -25,7 +25,7 @@ e-mail: carmengg@math.ucsb.edu
 
 ## SUMMARY
 
-PhD candidate looking to gain hands-on experience in management and analysis of environmental data.
+PhD candidate seeking to leverage her analytic knowledge and coding experience in an interdisciplinary working group that creates and implements solutions to environmental issues.
 
 * 5+ years of experience in mathematical research and higher education.
 
@@ -35,8 +35,7 @@ PhD candidate looking to gain hands-on experience in management and analysis of 
 
 * Effective team-work and leadership skills developed through founding the Mathematics Directed Reading Program impacting 120+ graduate and undergraduate students.
 
-* Strong interest in Environmental and Data Science.
-
+* Strong interest in ecological restoration and habitat management projects, fostered by exploring and learning about California’s ecosystems and wildlife.
 <br>
 
 
@@ -46,7 +45,7 @@ PhD candidate looking to gain hands-on experience in management and analysis of 
 
 **University of California, Santa Barbara **
 
-* Relevant courses: Introduction to Environmental Data Science & Statistics, Introduction to Ecological Restoration, Advanced Data Analysis
+* Relevant courses: Introduction to Environmental Data Science & Statistics, Advanced Data Analysis, Introduction to Ecological Restoration at UCSB’s North Campus Open Space
 
 <br>
 
@@ -67,25 +66,26 @@ PhD candidate looking to gain hands-on experience in management and analysis of 
 
 * Worked independently to design research projects, met advisor weekly for progress updates, met deadlines. 
 
-* Coded a Python library to perform hyperbolic calculations and search for hyperbolic groups.
+* Created a Python library to perform hyperbolic calculations and search for hyperbolic groups.
 
-* Developed new methods to explore group representations which have resulted in two single-authored manuscripts (one submitted for publication), 3 presentations at national conferences and 5 talks at research seminars. 
+*  My research has resulted in two single-authored manuscripts (one submitted for publication), 3 presenta- tions at national conferences and research seminar invitations to MIT, Tufts U, Temple U & Arizona State U.
+
 
 <br>
 
 *Student at Bren School of Environmental Science & Management*   (October 2020 - present) 
 
-* Used the tidyverse R library to do wrangling, statistical analysis and visualization of environmental data. 
+* Proficient in the use of the tidyverse R library for data wrangling, statistical analysis and visualization.
 
 * Assessed the fitness of statistical models for different types of real world data.
 
-* Used GitHub for collaboration, version control and repository usage.
+* Comfortable using git and GitHub for version control, repository usage and collaboration.
 
 <br>
 
 **University of California, Davis**, CA 
 
-*Undergraduate Researcher*    (Summer 2014)
+*Fulbright Scholarship, Summer Undergraduate Researcher*    (Summer 2014)
 
 * Collaborated with computer scientists and mathematicians in developing geometric combinatorial tools.
 
@@ -98,9 +98,37 @@ PhD candidate looking to gain hands-on experience in management and analysis of 
 
 **Languages:** Spanish (native), English (fluent), French (intermediate)
 
-**Interests:** Bird watching, hiking, yoga
+**Interests:** Hiking, yoga, bird watching. Member of the Goleta Coast Audubon Society and the Santa Barbara Audubon Society
 
 <br>
+
+## LEADERSHIP EXPERIENCE
+
+
+**Mathematics Directed Reading Program at UCSB (DRP)**
+
+*Co-founder, Organizer and Mentor*   (2018-2020)
+
+* Secured funding from the DRP National Network to start the UCSB DRP.
+
+* Coordinated the application process and selection of participants. In 2020 we received 120+ applications to participate, doubling the number of applications in 2019.
+
+* Mentored undergraduates in reading advanced mathematics and helped them design and present a poster showcasing their work.
+
+<br>
+
+**Institute for Advanced Studies**
+
+*Women and Mathematics Ambassador*   (2017-2018)
+
+* Obtained a grant from the Institute for Advanced Study to implement a program aimed to showcase the achievements of women in mathematics.
+
+* Worked with a team to design and host 15 public events at the UCSB Mathematics Department. These included panels, workshops, research talks and social events.
+
+* Managed funding and worked in close contact with administrative staff.
+
+<br>
+
 
 ## TEACHING EXPERIENCE
 
@@ -140,32 +168,6 @@ Center for Science and Engineering Partnerships**, CA
 
 <br>
 
-## LEADERSHIP EXPERIENCE
-
-
-**Mathematics Directed Reading Program at UCSB (DRP)**
-
-*Co-founder, Organizer and Mentor*   (2018-2020)
-
-* Secured funding from the DRP National Network to start the UCSB DRP.
-
-* Coordinated the application process and selection of participants. In 2020 we received 120+ applications to participate, doubling the number of applications in 2019.
-
-* Mentored undergraduates in reading advanced mathematics and helped them design and present a poster showcasing their work.
-
-<br>
-
-**Institute for Advanced Studies**
-
-*Women and Mathematics Ambassador*   (2017-2018)
-
-* Obtained a grant from the Institute for Advanced Study to implement a program aimed to showcase the achievements of women in mathematics.
-
-* Worked with a team to design and host 15 public events at the UCSB Mathematics Department. These included panels, workshops, research talks and social events.
-
-* Managed funding and worked in close contact with administrative staff.
-
-<br>
 
 ## MENTORING & OUTREACH
 
