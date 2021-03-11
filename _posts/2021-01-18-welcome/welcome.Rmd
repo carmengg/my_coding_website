@@ -3,7 +3,7 @@ title: "welcome"
 description: |
   This is my first blog post :)
 author:
-  - name: Carmen Edith Galaz García
+  - name: Carmen Galaz-García
 date: 01-18-2021
 output:
   distill::distill_article:
@@ -15,8 +15,5 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
-
-Learn more about using Distill at <https://rstudio.github.io/distill>.
-
+Ola ke ase !!!!
 
