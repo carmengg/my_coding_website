@@ -86,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>hares-linear-regression</title>
+  <title>Linear regression model</title>
   
-  <meta property="description" itemprop="description" content="A short description of the post."/>
+  <meta property="description" itemprop="description" content="Analysis of snowshoe hares&#39; characteristics and numbers at the Bonanza Creek Experimental Forest."/>
   
   
   <!--  https://schema.org/Article -->
@@ -97,21 +97,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Carmen Galaz-García"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="hares-linear-regression"/>
+  <meta property="og:title" content="Linear regression model"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A short description of the post."/>
+  <meta property="og:description" content="Analysis of snowshoe hares&#39; characteristics and numbers at the Bonanza Creek Experimental Forest."/>
   <meta property="og:locale" content="en_US"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="hares-linear-regression"/>
-  <meta property="twitter:description" content="A short description of the post."/>
+  <meta property="twitter:title" content="Linear regression model"/>
+  <meta property="twitter:description" content="Analysis of snowshoe hares&#39; characteristics and numbers at the Bonanza Creek Experimental Forest."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["hares-linear-regression"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carmen Galaz-García"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["11-15-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Linear regression model"]},{"type":"character","attributes":{},"value":["Analysis of snowshoe hares' characteristics and numbers at the Bonanza Creek Experimental Forest.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carmen Galaz-García"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["11-15-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"hares-linear-regression","description":"A short description of the post.","authors":[{"author":"Carmen Galaz-García","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-11-15T00:00:00.000+00:00","citationText":"Galaz-García, 2020"}
+{"title":"Linear regression model","description":"Analysis of snowshoe hares' characteristics and numbers at the Bonanza Creek Experimental Forest.","authors":[{"author":"Carmen Galaz-García","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-11-15T00:00:00.000+00:00","citationText":"Galaz-García, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1466,10 +1466,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>hares-linear-regression</h1>
+<h1>Linear regression model</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A short description of the post.</p></p>
+<p><p>Analysis of snowshoe hares’ characteristics and numbers at the Bonanza Creek Experimental Forest.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1518,6 +1518,25 @@ Analysis of a possible relation between hind foot length and weight of juvenile 
 <h3 id="annual-juvenile-hare-trap-counts">Annual juvenile hare trap counts</h3>
 <p>In this section we analyze yearly counts of juvenile snowshoe hares. In total 378 observations of juvenile snowshoe hares were recorded during the study. Sample site is not included as a variable here, though it would be it would be interesting to see if juvenile hare counts are changing equally in all sample sites.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Count juveniles per year</span>
+<span class='va'>per_year_juveniles</span> <span class='op'>&lt;-</span> <span class='va'>hares</span> <span class='op'>%&gt;%</span>    <span class='co'># copy data</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>age</span> <span class='op'>==</span> <span class='st'>"j"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>       <span class='co'># select juvenile hares</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'><a href='http://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>mdy</a></span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>     <span class='co'># create new column with year</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>Year</span><span class='op'>)</span>
+
+<span class='co'># --- Create graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span> data<span class='op'>=</span> <span class='va'>per_year_juveniles</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span><span class='va'>Year</span>, y <span class='op'>=</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>   <span class='co'># select data and variables</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>stat<span class='op'>=</span><span class='st'>"identity"</span>, fill<span class='op'>=</span><span class='st'>"snow4"</span><span class='op'>)</span> <span class='op'>+</span>    <span class='co'># do a bar plot</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>breaks<span class='op'>=</span><span class='fl'>2</span><span class='op'>*</span><span class='op'>(</span><span class='fl'>994</span><span class='op'>:</span><span class='fl'>1006</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>   <span class='co'># adjust ticks</span>
+  <span class='fu'>labs</span><span class='op'>(</span><span class='co'>#title="Juvenile snowshoe hares observations recorded yearly",</span>
+       y<span class='op'>=</span> <span class='st'>"Number of hares (n)"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_light</span><span class='op'>(</span><span class='op'>)</span>  <span class='co'># update theme</span>
+</code></pre>
+</div>
+</details>
 <p><img src="hares-linear-regression_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 1.</strong> Total juvenile snowshoe hare observations (n) during each year of the study (1999-2012). Data: Kielland et al. (2017)</p>
@@ -1525,12 +1544,53 @@ Analysis of a possible relation between hind foot length and weight of juvenile 
 <p>While these are absolute counts, these numbers are also impacted by effort. Moving forward I would suggest to conduct the trappings on the same dates every year and space these times across different seasons. For example the first two weeks of each month every year. I imagine juveniles are mostly present during Spring, but with climate change it is possible Spring weather does not come at the same dates in 2012 as in 1998, so there might be a risk of undercounting if the counts are done during a fixed period of time every year. I would also suggest to maintain the number and location of traps constant over the years.</p>
 <h3 id="juvenile-hare-weights-by-sex-and-sample-site">Juvenile hare weights by sex and sample site</h3>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Select data</span>
+<span class='va'>summary_juveniles</span> <span class='op'>&lt;-</span> <span class='va'>juveniles</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='va'>sex</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>weight</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>weight</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            <span class='co'>#median = median(weight, na.rm=TRUE),</span>
+            n <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span>
+            <span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <p>Weights (measured in grams) of male and female juvenile snowshoe hares are compared across the three sampling sites: Bonanza Black Spruce, Bonanza Mature and Bonanza Riparian. From the 378 observations of juvenile snowshoe hares recorded during the study, 7 of them did not have the hare’s weight recorded (3 females and 4 of unidentified sex).</p>
 <p>In all three sites the average weight for male juvenile hares is greater than that of female juvenile hares. Juvenile hares were biggest at the Bonanza Black Spruce sampling site, with weight of male hares being 1073 <span class="math inline">\(\pm\)</span> 223 grams (n= 13; mean <span class="math inline">\(\pm\)</span> 1 standard deviation) and weight of female hares being 1022 <span class="math inline">\(\pm\)</span> 293 grams (n= 35). In Bonanza Mature and Bonanza Riparian the average and standard deviations of weights were similar for both female and male juvenile hares.</p>
 <p><strong>Table 1.</strong> Descriptive statistics (mean, standard deviation and sample size) at each sample site for female and male juvenile snowshoe hares. Data: Kielland et al. (2017)</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Create table with summary statistics </span>
+
+<span class='va'>weight_summary_table</span> <span class='op'>&lt;-</span> <span class='va'>summary_juveniles</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+       grid <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span> <span class='co'># update names of sample sites</span>
+         <span class='va'>grid</span> <span class='op'>==</span> <span class='st'>"bonbs"</span> <span class='op'>~</span> <span class='st'>"Bonanza Black Spruce"</span>,
+         <span class='va'>grid</span> <span class='op'>==</span> <span class='st'>"bonrip"</span> <span class='op'>~</span> <span class='st'>"Bonanza Riparian"</span>, 
+         <span class='va'>grid</span> <span class='op'>==</span> <span class='st'>"bonmat"</span> <span class='op'>~</span> <span class='st'>"Bonanza Mature"</span>
+       <span class='op'>)</span>,
+       sex <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>   <span class='co'># update names of sex</span>
+         <span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"f"</span> <span class='op'>~</span> <span class='st'>"female"</span>,
+         <span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"m"</span> <span class='op'>~</span><span class='st'>"male"</span>
+       <span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span> col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sample site"</span>, 
+                        <span class='st'>"Sex"</span>, 
+                        <span class='st'>"Mean weight (g)"</span>,
+                        <span class='st'>"Standard deviation (g)"</span>,
+                        <span class='co'>#"Median weight (g)",</span>
+                        <span class='st'>"Sample size (n)"</span> <span class='op'>)</span> 
+                         <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+   <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kable_styling.html'>kable_styling</a></span><span class='op'>(</span>full_width <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>weight_summary_table</span>
+</code></pre>
+</div>
+</details>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1710,18 +1770,138 @@ NA
 </div>
 <p>Distribution of weights for female and male juvenile hares appear to be more normal at the Bonanza Riparian site and rather uniform at the other two sites. Note that the Bonanza Riparian site has almost four times as many observations than the other two sites for female hares. For male hares Bonanza Riparian site has about twice as many observations than Bonanza Mature and almost 10 times more than Bonanza Black Spruce. In all three sites and for both sexes the eight mean and median are similar.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ---  Create graph of juvenile weight divided by sex and grid</span>
+
+<span class='co'># -- individual figure titles</span>
+<span class='va'>grid_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>bonbs<span class='op'>=</span><span class='st'>"Bonanza Black Spruce"</span>, 
+                bonrip<span class='op'>=</span><span class='st'>"Bonanza Riparian"</span>, 
+                bonmat<span class='op'>=</span><span class='st'>"Bonanza Mature"</span><span class='op'>)</span>
+
+<span class='co'># -- make beeswax plot with added box-plot on top</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>juveniles</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sex</span>, y <span class='op'>=</span> <span class='va'>weight</span><span class='op'>)</span> <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html'>geom_beeswarm</a></span><span class='op'>(</span>show.legend<span class='op'>=</span><span class='cn'>FALSE</span>,
+                <span class='fu'>aes</span><span class='op'>(</span>color<span class='op'>=</span><span class='va'>sex</span><span class='op'>)</span>,
+                size <span class='op'>=</span> <span class='fl'>4</span>,    <span class='co'># point size</span>
+                alpha <span class='op'>=</span> <span class='fl'>0.6</span>, <span class='co'># transparency</span>
+                pch <span class='op'>=</span> <span class='fl'>20</span>,    <span class='co'># point shape</span>
+                cex<span class='op'>=</span><span class='fl'>2.5</span>      <span class='co'># scatters points</span>
+                <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='cn'>NA</span>, width <span class='op'>=</span> <span class='fl'>0.2</span>, outlier.color <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>stat_summary</span><span class='op'>(</span>fun<span class='op'>=</span><span class='va'>mean</span>, 
+               geom<span class='op'>=</span><span class='st'>"point"</span>, 
+               shape<span class='op'>=</span><span class='fl'>20</span>, 
+               size<span class='op'>=</span><span class='fl'>3</span>, 
+               color<span class='op'>=</span><span class='st'>"black"</span>, 
+               fill<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>grid</span>,   <span class='co'># make one graph per grid element</span>
+             labeller <span class='op'>=</span> <span class='fu'>labeller</span><span class='op'>(</span> grid <span class='op'>=</span> <span class='va'>grid_names</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>   <span class='co'># update individual titles</span>
+  <span class='fu'>labs</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>"Weight (g)"</span>, x<span class='op'>=</span><span class='st'>"Sex"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_discrete</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"female"</span>, <span class='st'>"male"</span>, <span class='st'>"NA"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>   <span class='co'># update x-axis labels </span>
+  <span class='fu'>theme_light</span><span class='op'>(</span><span class='op'>)</span>  <span class='co'># update theme</span>
+</code></pre>
+</div>
+</details>
 <p><img src="hares-linear-regression_files/figure-html5/unnamed-chunk-4-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <p><strong>Figure 2.</strong> Weight (g) of juvenile snowshoe hares recorded in each sampling site, divided by sex. Red (female), blue (male) and gray (unidentified) points indicate individual observations of weight (g) of a juvenile snowshoe hare. Box endpoints indicate the 25<sup>th</sup> and 75<sup>th</sup> percentile values, the black line and black point within the box indicate the median and mean value for each species, respectively. Data: Kielland et al. (2017)</p>
 <h3 id="weight-comparison-in-male-female-snowshoe-hares">Weight comparison in male &amp; female snowshoe hares</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Data Selection &amp; Summary Statistics</span>
 
+<span class='co'># --- checking how many hares don't have weight registered</span>
+<span class='co'>#View(filter(juveniles,is.na(weight)))    # seven juvenile hares with weight==NA</span>
+
+<span class='co'># --- separate data of female and male juvenile hares with recorded weight</span>
+<span class='va'>female_male</span> <span class='op'>&lt;-</span>  <span class='va'>juveniles</span> <span class='op'>%&gt;%</span>   <span class='co'># copy data</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>weight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>           <span class='co'># select those with recorded weight</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span><span class='op'>)</span>                  <span class='co'># select those with recorded sex</span>
+
+<span class='co'># --- create descriptive statistics for weight of female and male hares</span>
+<span class='va'>female_male_summary</span> <span class='op'>&lt;-</span> <span class='va'>female_male</span> <span class='op'>%&gt;%</span>   <span class='co'># copy data</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>weight</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>weight</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            <span class='co'>#median = median(weight, na.rm=TRUE),</span>
+            n <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Exploring data to ensure 2-sample t-test is adequate</span>
+
+<span class='co'># Histograms: female hares normal, male hares too though slightly bimodal</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>female_male</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>weight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>sex</span><span class='op'>)</span>
+
+<span class='co'># QQ Plots: both graphs close to a line, males a bit wobbly on bottom</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>female_male</span>, <span class='fu'>aes</span><span class='op'>(</span>sample <span class='op'>=</span> <span class='va'>weight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_qq</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>sex</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Two-sample t-test &amp; Cohen's d ----</span>
+
+<span class='co'># --- Convert data to vector form</span>
+<span class='va'>juvenile_female</span> <span class='op'>&lt;-</span> <span class='va'>female_male</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"f"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>weight</span><span class='op'>)</span>
+
+<span class='va'>juvenile_male</span> <span class='op'>&lt;-</span> <span class='va'>female_male</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"m"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>weight</span><span class='op'>)</span>
+
+<span class='co'># --- Two-sample t-test ---</span>
+<span class='va'>ttest_juveniles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/t.test.html'>t.test</a></span><span class='op'>(</span><span class='va'>juvenile_male</span>,<span class='va'>juvenile_female</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='va'>tidy</span> <span class='co'># make test parameters available for in-line referencing</span>
+
+<span class='co'># --- Cohen's d ---</span>
+<span class='va'>juveniles_effsize</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/effsize/man/cohen.d.html'>cohen.d</a></span><span class='op'>(</span><span class='va'>juvenile_male</span>,<span class='va'>juvenile_female</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <p>Out of 378 observations of juvenile snowshoe hares we excluded from this analysis those which did not have the hare’s sex or weight recorded, this left us with 360 observations<br />
 (197 females and 163 males).</p>
 <p>On average for juvenile snowshoe hares, males weigh more than females (945.86 <span class="math inline">\(\pm\)</span> 333.22 and 855.39 <span class="math inline">\(\pm\)</span> 292.25 grams, respectively; mean <span class="math inline">\(\pm\)</span> 1 standard deviation). The absolute difference in means is 90 grams, so male hares weigh 11% more than females. This difference in means is significant (Welch’s two-sample t-test: t(325.02) = 2.71, p=0.0071 &lt; <span class="math inline">\(\alpha\)</span>), though the effect size is small (Cohen’s <em>d</em> = 0.29).</p>
 <p><strong>Table 2.</strong> Descriptive statistics (mean, standard deviation, and sample size) for female and male juvenile snowshoe hares. Data: Kielland et al. (2017)</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Create summary table</span>
+
+<span class='co'># -- update tags for table</span>
+<span class='va'>female_male_summary</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"female"</span>  
+<span class='va'>female_male_summary</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"male"</span>  
+
+<span class='co'># -- make table</span>
+<span class='va'>female_male_summary</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span> col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sex"</span>, 
+                                       <span class='st'>"Mean weight (g)"</span>, 
+                                       <span class='st'>"Standard deviation (g)"</span>,
+                                       <span class='co'>#"Median weight (g)",</span>
+                                       <span class='st'>"Sample size (n)"</span> <span class='op'>)</span> 
+                         <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+   <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kable_styling.html'>kable_styling</a></span><span class='op'>(</span>full_width <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1773,14 +1953,78 @@ male
 </div>
 <h3 id="relationship-between-juvenile-weight-hind-foot-length">Relationship between juvenile weight &amp; hind foot length</h3>
 <p>In this section we explore the relationship between juvenile snowshoe hare hind foot length and weight. Out of the total 378 observations, we run the analysis on the 249 observations that include records of both hind foot length and weight.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Linear Model: weight(hindft) ---</span>
+
+<span class='co'># -- select data with recorded weight and recorded hindft</span>
+<span class='va'>complete_juveniles</span> <span class='op'>&lt;-</span> <span class='va'>juveniles</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>weight</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>FALSE</span> <span class='op'>&amp;</span> <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>hindft</span><span class='op'>)</span><span class='op'>==</span><span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='co'># View(filter(juveniles, is.na(weight) | is.na(hindft))) # checking the leftout data</span>
+
+<span class='co'># -- linear model for weight(hindft)</span>
+<span class='va'>juveniles_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>weight</span> <span class='op'>~</span> <span class='va'>hindft</span>, data<span class='op'>=</span><span class='va'>complete_juveniles</span><span class='op'>)</span>
+<span class='co'>#summary(juveniles_lm)</span>
+
+<span class='co'># -- accessing data in linear model</span>
+<span class='co'># tidy versions of model outputs tp use in-text (converted to data frame)</span>
+<span class='va'>tidy_juveniles_lm</span> <span class='op'>&lt;-</span> <span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>juveniles_lm</span><span class='op'>)</span> 
+<span class='va'>juveniles_lm_glance</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/generics/man/glance.html'>glance</a></span><span class='op'>(</span><span class='va'>juveniles_lm</span><span class='op'>)</span>
+
+<span class='co'># -- Pearson's R correlation</span>
+<span class='va'>juveniles_corr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.test.html'>cor.test</a></span><span class='op'>(</span><span class='va'>complete_juveniles</span><span class='op'>$</span><span class='va'>weight</span>, <span class='va'>complete_juveniles</span><span class='op'>$</span><span class='va'>hindft</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='va'>tidy</span>
+</code></pre>
+</div>
+</details>
+</div>
 <p>In Figure 3 we can see most of the data follows a linear trend, thought there is a significant number of points on the bottom right part of the graph which do not behave linearly. To analyze a possible linear dependence of body mass with respect to flipper length we used simple linear regression. This analysis revealed that variance in weight of juvenile hares is not quite explained by hind foot length (p &lt; 0.001, R<sup>2</sup> = 0.3). The average slope of the linear model is <span class="math inline">\(\beta\)</span> = 9.52 g mm<sup>-1</sup> (i.e., for each one millimeter increase in hind foot length we expect an average increase in weight of 9.52 g). A Pearson’s <em>r</em> of 0.55 (p &lt; 0.001) shows weight is positively correlated to hind foot length with medium strength.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Relationship between juvenile hind foot length and weight</span>
+
+<span class='co'># --- Graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>complete_juveniles</span>, <span class='fu'>aes</span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>weight</span>, x<span class='op'>=</span><span class='va'>hindft</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span>  alpha <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span> y<span class='op'>=</span><span class='st'>"Weight (g)"</span>, 
+        x<span class='op'>=</span><span class='st'>"Hind foot length (mm)"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"gray30"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>theme_light</span><span class='op'>(</span><span class='op'>)</span>  <span class='co'># update theme</span>
+</code></pre>
+</div>
+</details>
 <p><img src="hares-linear-regression_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 3.</strong> Relationship between hind foot length (mm) and weight (g) of juvenile snowshoe hares. Points indicate individual hare measurements. Linear model summary: <span class="math inline">\(\beta\)</span><sub>1</sub> = 9.52 g mm<sup>-1</sup>, p &lt; 0.001, R<sup>2</sup> = 0.3, Pearson’s <em>r</em> = 0.55). Data: Kielland et al. (2017)</p>
 <p>Overall a linear model of weight with respect to hind foot length does not account completely for the change in the dependent variable. Apart from data not following entirely a linear trend, further explorations show residuals are not entirely normally distributed and violate homoscedasticity (do not appear to be randomly distributed).</p>
 <p>Notice that sex is not included as a variable in the previous analysis. If we consider observations for female and male hares separately we can see in Figure 4 that data for female hares follows a more linear trend while data for male hares tends to spread out more. It would be interesting to consider a linear model for each of these groups separately.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>hide</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- Relationship between juvenile hind foot length and weight, by sex</span>
+
+<span class='co'>#  update of names </span>
+<span class='va'>complete_juveniles</span>  <span class='op'>&lt;-</span> <span class='va'>complete_juveniles</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+        sex <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>   <span class='co'># update names of sex</span>
+         <span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"f"</span> <span class='op'>~</span> <span class='st'>"female"</span>,
+         <span class='va'>sex</span> <span class='op'>==</span> <span class='st'>"m"</span> <span class='op'>~</span><span class='st'>"male"</span>
+       <span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># --- Graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>complete_juveniles</span>, <span class='fu'>aes</span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>weight</span>, x<span class='op'>=</span><span class='va'>hindft</span>, color<span class='op'>=</span><span class='va'>sex</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span> alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span> y<span class='op'>=</span><span class='st'>"Weight (g)"</span>, 
+        x<span class='op'>=</span><span class='st'>"Hind foot length (mm)"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>theme_light</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># update theme</span>
+  <span class='fu'>theme</span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.15</span>, <span class='fl'>0.7</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="hares-linear-regression_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 4.</strong> Relationship between hind foot length (mm) and weight (g) of juvenile snowshoe hares divided by sex. Red (female), blue (male) and gray (unidentified) points indicate individual observations of juvenile snowshoe hares. Data: Kielland et al. (2017)</p>
