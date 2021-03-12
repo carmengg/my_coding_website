@@ -1,0 +1,125 @@
+---
+title: "Text and sentiment analysis of 'The Little Prince'"
+description: |
+  A short description of the post.
+author:
+  - name: Carmen Galaz-García
+    url: {}
+date: 02-10-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+
+library(tidyverse)
+library(tidytext)
+library(textdata)
+library(pdftools)
+library(ggwordcloud)
+library(knitr)
+library(here)
+```
+
+## Introduction
+In this report we perform a text analysis on the The Little Prince,  written and illustrated by Antoine de Saint Exupéry. We use the translation from the French by Katherine Woods.
+
+
+## Text wrangling
+
+```{r, code_folding= TRUE }
+# --- READ IN TEXT ---
+prince_text <- pdf_text("TheLittlePrince.pdf")
+
+# --- TEXT CLEANING ---
+prince_tokens <- data.frame(prince_text) %>%   # convert to data frame
+  mutate(text_full = str_split(prince_text,pattern="\\n")) %>%  #split by line
+  unnest(text_full) %>% # make each line into a string
+  mutate(text_full = str_trim(text_full)) %>%  # remove extra spaces
+  unnest_tokens(word, text_full) %>%           # make a column with each word as a row
+  select(word) %>%      # keep the words
+  anti_join(stop_words) # remove stop words
+
+```
+
+## Most used words
+The word "prince", which is the most frequently used word in the text, is excluded from this analysis.
+
+```{r, code_folding= TRUE }
+# --- TOP 100 WORDS WORDCLOUD ---
+
+# select top 100 words
+top_100_words <- prince_tokens %>% 
+  count(word) %>% 
+  arrange(-n) %>% 
+  slice(2:101) %>%   # remove prince (#1 word with 179 counts)
+  mutate(angle = 45 * sample(-2:2, n(), # add random angles to words
+                             replace = TRUE, 
+                             prob = c(1, 1, 4, 1, 1))) 
+
+top_100_words$angle[1]=45
+
+# wordcloud graph
+ggplot(top_100_words, aes(label = word, 
+                          size = n,
+                          color = factor(sample.int(10, nrow(top_100_words), replace = TRUE)),
+                          angle = angle)) +
+  geom_text_wordcloud_area() +
+  scale_size_area(max_size = 10) +
+  labs(title="Most used words in The Little Prince")+
+  theme_void()
+```
+
+
+```{r, preview=TRUE, eval=TRUE, echo=FALSE, layout="l-page", fig.height=100, fig.width=100}
+
+knitr::include_graphics(here("_posts","2021-03-12-text-analysis","word_cloud.png"))
+
+```
+
+## Sentiment analysis
+
+To do the sentiment analysis we used the NRC lexicon, which assigns to each word one of 10 sentiments. 
+
+```{r, code_folding= TRUE }
+nrc_count <- prince_tokens %>% 
+  inner_join(get_sentiments("nrc")) %>% 
+  count(sentiment)
+
+ggplot(data=nrc_count, aes(x=sentiment, y=n))+
+  geom_col(color='darkslateblue', fill='darkslateblue')+
+  coord_flip() +
+  labs( y = "words with given sentiment",
+          title = "Sentiment analysis in 'The Little Prince' by Antoine de Saint-Exupéry")+
+  theme_minimal()
+```
+
+
+
+
+
+```{r, include=FALSE}
+prince_afinn <- prince_tokens %>% 
+  inner_join(get_sentiments("afinn"))
+
+afinn_counts <- prince_afinn %>% 
+  count(word, value)
+
+```
+
+
+```{r,include=FALSE}
+# SIMPLE wordcloud
+top_100_words <- prince_tokens %>% 
+  count(word) %>% 
+  arrange(-n) %>% 
+  slice(2:101)
+
+ggplot(data = top_100_words, aes(label=word)) +
+  geom_text_wordcloud(aes(color=n, size=n))+
+  scale_size_area(max_size=7)
+
+```
