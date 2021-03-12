@@ -1,7 +1,7 @@
 ---
-title: "Cheeses: how similar are they depending on their country of origin"
+title: "Principal Component Analysis (PCA)"
 description: |
-   Principal component analysis (PCA) on the nutrition data for 45 types of cheeses from 10 countries.
+   How similar are cheeses depending on their country of origin? In this project we use principal component analysis (PCA) on the nutrition data for 45 types of cheeses from 10 countries to explore this question. 
 author:
   - name: Carmen Galaz-García
     url: {}
