@@ -1,20 +1,20 @@
 ---
-title: "oil-spill-maps"
+title: "Maps (GIS)"
 description: |
-  A short description of the post.
+  Chropleth and interactive maps exploring California oil spills.
 author:
   - name: Carmen Galaz-García
     url: {}
-date: 03-12-2021
+date: 02-25-2021
 output:
   distill::distill_article:
     self_contained: false
-    code
+    code_folding: hide
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set( message=FALSE, warning=FALSE, cache=TRUE)
+knitr::opts_chunk$set( message=FALSE, warning=FALSE)
 
 library(tidyverse)
 library(here)
@@ -25,11 +25,11 @@ library(janitor)
 
 ## Introduction
 
-In this report we make the following exploratory maps of the oil spill events that took place in California during 2008:
+This report contains the following exploratory maps of the oil spill events that took place in California during 2008:
 
-(1) chloropleth map showing the number of inland oil spill events by county, and
+(1) choropleth map showing the number of inland oil spill events by county, and
 
-(2) interactive map showing the location of oil spill events included in the data and the number of inlaind oils spill events by county.
+(2) interactive map showing the location of oil spill events included in the data and the number of inland oils spill events by county.
 
 Data comes from the California State Geoportal oil spill incident tracking.
 
@@ -37,13 +37,22 @@ Data comes from the California State Geoportal oil spill incident tracking.
 
 All plots are made using R version 4.0.2 using RStudio Version 1.3.1093.
 
+## Data selection
 ```{r}
 # ---- READ DATA ----
 
-raw_counties <- read_sf(here("data","CA_counties","CA_Counties_TIGER2016.shp")) %>% 
+raw_counties <- read_sf(here("_posts",
+  "2021-03-12-oil-spill-maps",
+  "data",
+  "CA_counties",
+  "CA_Counties_TIGER2016.shp")) %>% 
   clean_names()
 
-raw_spills <- read_sf(here("data","Oil_Spill_Tracking","Oil_Spill_Incident_Tracking_%5Bds394%5D.shp")) %>% 
+raw_spills <- read_sf(here(
+  "_posts",
+  "2021-03-12-oil-spill-maps",
+  "data","Oil_Spill_Tracking",
+  "Oil_Spill_Incident_Tracking_%5Bds394%5D.shp")) %>% 
   clean_names()
 
 
@@ -68,10 +77,10 @@ oil_spills <- raw_spills %>%
   select(objectid, date_of_incident, location, waterway, city:longitude)
 ```
 
-## Cloropleth map
+## Choropleth map
 
-```{r}
-# ---- CLOROPLETH MAP BY # OF INLAND SPILLS BY COUNTY
+```{r, preview=TRUE, fig.align="center"}
+# ---- CHOROPLETH MAP BY # OF INLAND SPILLS BY COUNTY
 
 # select only inland spills
 inland_spills <- oil_spills %>% 
@@ -86,7 +95,7 @@ count_inland_spills <- ca_counties %>%
 # create map
 ggplot(data = count_inland_spills) +
   geom_sf(aes(fill = n), color = "white", size = 0.3) +
-  theme_void() +
+  theme_bw() + # shows coordinates
   scale_fill_gradientn(colors = c("papayawhip","orange","red"))+
   labs(title = "Number of inland oil spills in each California county during 2008",
        fill = "Number of oil spills")
@@ -96,7 +105,7 @@ ggplot(data = count_inland_spills) +
 
 ## Interactive map
 
-```{r}
+```{r }
 
 # count of all oil spills by county
 spills_by_counties <- ca_counties %>% 
@@ -108,6 +117,7 @@ spills_by_counties <- ca_counties %>%
 tmap_mode(mode = "view")
 
 tm_shape(spills_by_counties) +
+  tm_basemap("OpenStreetMap.Mapnik")+  # fix base map
   tm_borders("white", lwd = 1) +
   tm_polygons("total_spills", palette = "Oranges", alpha=0.8) +
   tm_shape(oil_spills) +
