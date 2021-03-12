@@ -9,7 +9,7 @@ date: 01-25-2021
 output:
   distill::distill_article:
     self_contained: false
-    code_folding: hide  # makes hide/show for code
+#    code_folding: hide  # makes hide/show for code
 #output: 
 #  html_document:
     #toc: true  # make a table of contents
@@ -31,17 +31,28 @@ https://fdc.nal.usda.gov/index.html
 All analyses are in R version 4.0.2 using RStudio Version 1.3.1093.
 
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(eval=FALSE)
 
 library(tidyverse)
 library(here)
 library(ggfortify)  # for PCA
 library(janitor)
+library(jpeg)
+library(knitr)    # For knitting document and include_graphics function
+
 ```
 
+
+
+```{r, preview=TRUE, echo = FALSE, eval=TRUE, out.width = "70%", fig.align="center" }
+knitr::include_graphics(here('_posts','2021-03-11-cheese-pca','cheeses.jpg'))
+```
+
+
 ### Data wrangling
-```{r}
+```{r, echo = TRUE, code_folding=TRUE}
 # ---- DATA READING ----
 food <- read.csv(here("Task2_PCA","usda_nutrients.csv")) %>% 
   clean_names() %>%      
@@ -73,7 +84,7 @@ cheeses <- food %>%
 ```
 
 ### Principal Component Analysis and Biplot 
-```{r, fig.width = 10}
+```{r, echo = TRUE, code_folding=TRUE}
 # ---- PRINCIPAL COMPONENT ANALYSIS ----
 cheeses_PCA <- cheeses %>% 
   select(4:8) %>%    # select numerical variables
@@ -95,7 +106,10 @@ cheese_biplot <- autoplot(cheeses_PCA,   # automatically recognizes PCA and does
 cheese_biplot
 ```
 
-
+```{r, echo = FALSE, eval=TRUE, out.width = "120%", fig.align="center" }
+knitr::include_graphics(here('_posts','2021-03-11-cheese-pca','cheese_PCA.jpeg'))
+# "Cheese" by rjhuttondfw is licensed under CC BY 2.0
+```
 
 
 **Figure 1.** PCA biplot showing the relationships between energy (kcal), protein (g), fat (g), carbohydrate (g) and sugar (g) present in $x$ grams of cheese. Each dot represents a different type of cheese. The color of a dote indicates the country of origin of the cheese. 
