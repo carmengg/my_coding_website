@@ -1,7 +1,7 @@
 ---
-title: "Classification of palmetto species via machine learning"
+title: "Logistic regression"
 description: |
-  by their morphological characteristics A short description of the post.
+  Classification of palm species by their morphological characteristics via logistic regression. Simple machnine learning example. 
 author:
   - name: Carmen Galaz-García
     url: {}
@@ -10,7 +10,7 @@ output:
   distill::distill_article:
     self_contained: false
     toc: true  # make a table of contents
-    code_folding: hide # makes hide/show for code
+#    code_folding: hide # makes hide/show for code
 ---
 
 
@@ -21,9 +21,11 @@ library(tidyverse)
 library(broom)      # has tidy to convert test results to tables
 library(kableExtra) # create nice tables
 library(effsize)    # includes cohen's d
+library(knitr)
+library(here)
 ```
 
-# Introduction 
+## Introduction 
 
 In this report we use binary logistic regression to test the feasibility of using morphological characteristics to classify whether a palmetto plant is species *serenoa repens* or species *sabal etonia*. 
 The variables we use for this classification are the height (cm), widest length of the canopy (cm), widest width of the canopy perpendicular to the canopy length (cm) and number of green leaves (n) in a palmetto plant.
@@ -32,8 +34,28 @@ Data was collected by the Archbold Biological Station in south-central Florida f
  
 All analyses are in R version 4.0.2 using RStudio Version 1.3.1093.
 
-# Data exploration
-```{r}
+```{r eval=TRUE, echo=FALSE, out.width = "60%", out.height="49%", fig.show='hold',fig.align="center"}
+
+serenoa <- here('_posts','2021-03-11-palmetto-log-regression','serenoa.jpg')
+sabal <- here('_posts','2021-03-11-palmetto-log-regression','sabal.jpg')
+#knitr::include_graphics(c(serenoa, sabal))
+```
+
+```{r eval=TRUE, echo=FALSE, out.width = "60%", out.height="49%", fig.align="center"}
+
+knitr::include_graphics(serenoa)
+```
+
+
+```{r eval=TRUE, echo=FALSE, out.width = "60%", out.height="49%",fig.align="center"}
+
+knitr::include_graphics(sabal)
+```
+
+
+
+## Data exploration
+```{r, code_folding=TRUE}
 # --- DATA SELECTION ---- 
 
 raw_palmetto <- read_csv("palmetto.csv")
@@ -48,7 +70,7 @@ palmetto$species<- as.factor(palmetto$species) # convert to factor
 ```
 
 
-```{r}
+```{r, code_folding=TRUE}
 # --- GRAPH 1: CANOPY DIMENSIONS ---
 
 ggplot(data=palmetto, aes(x=length, y=width))+
@@ -68,28 +90,12 @@ ggplot(data=palmetto, aes(x=length, y=width))+
   
 ```
 
-```{r, include=FALSE}
-# # -- select data with recorded weight and recorded hindft
-# complete_juveniles <- juveniles %>% 
-#   filter(is.na(weight)==FALSE & is.na(hindft)==FALSE)
-# # View(filter(juveniles, is.na(weight) | is.na(hindft))) # checking the leftout data
-# 
-# # -- linear model for weight(hindft)
-# juveniles_lm <- lm(weight ~ hindft, data=complete_juveniles)
-# summary(juveniles_lm)
-# 
-# # -- accessing data in linear model
-# # tidy versions of model outputs tp use in-text (converted to data frame)
-# tidy_juveniles_lm <- broom::tidy(juveniles_lm) 
-# juveniles_lm_glance <- glance(juveniles_lm)
-```
-
 
 **Figure 1.** Relationship between widest length of the canopy (cm) and widest width of the canopy perpendicular to the canopy length (cm) of the palmetto plant species *sabal etonia* and *serenoa repens*. Each point indicates measurements of an individual plant. Data: Abrahamson (2019)
 
 From figure 1 we can see that canopy width and length for both plant species are positively correlated. Plants from *sabal etonia* species are slightly longer than those from *serenoa repens*.
 
-```{r}
+```{r, code_folding=TRUE}
 # --- GRAPH 2: NUMBER OF LEAVES HISTOGRAM  ---
 
 ggplot(data=palmetto, aes(x=green_lvs))+
@@ -112,7 +118,7 @@ ggplot(data=palmetto, aes(x=green_lvs))+
 In figure 2 we can clearly see that most *sabal etonia* plants have 5 or less green levaes. These are fewer green leaves than what *serenoa repens* plants have, *serenoa repens* plants have a median of about 7 green leaves per plant. 
 
 
-```{r, preview=TRUE}
+```{r, preview=TRUE, , code_folding=TRUE}
 # --- GRAPH 3: HEIGHT
 
 ggplot(data=palmetto, aes(x=species, y=height))+
@@ -131,7 +137,7 @@ ggplot(data=palmetto, aes(x=species, y=height))+
 ```
 
 
-```{r}
+```{r, , code_folding=TRUE}
 # ---- DESCRIPTIVE STATISTICS ----
 summary_palmetto <- palmetto %>% 
   group_by(species) %>% 
@@ -184,7 +190,7 @@ however the effect size is small
 
 
 
-# Binary logistic regression
+## Binary logistic regression
 
 Based on the preliminary data visualization and analysis, it seems possible that the differences in canopy dimensions, height and number of green leaves for *serenoa repens* and *sabal etonia* plant species are significant.
 These characteristics could be used classify whether a palmetto plant belongs to either one of these species. 
@@ -194,7 +200,7 @@ To assess this we used a binary logistic regression to create a classification, 
 **Table 1. ** Coefficients of the binary logistic regression model for classifying *serenoa repens* and *sabal etonia* palmetto plants based on their height (cm), canopy length and width (cm) and number of green leaves (n). The standard error and p-values for each coefficient are included. Data: Abrahamson (2019).
 
 
-```{r}
+```{r, code_folding=TRUE}
 # ---- BINARY LOGISTIC REGRESSION ---- 
 
 # -- create model
@@ -222,7 +228,7 @@ blr_model <- tidy(blr_palmetto) %>%
 blr_model
 ```
 
-## Model accuracy
+### Model accuracy
 
 Based on the previous binary logistic regression we constructed a probability function $P$ dependent on a plant's height $h$ (cm), canopy length $l$ (cm), canopy width $w$ (cm) and number of green leaves $n$.
 Then $P(h,l,w,n)$ is the probability that a palmetto plant with the specified measurements being a *serenoa repens*. 
@@ -233,7 +239,7 @@ Similarly, if $X$ is an individual of species *sabal etonia* with measurements $
 **Table 2.** Number and percentages of each species correctly and incorrectly classified by the model. 
 
 
-```{r}
+```{r, code_folding=TRUE}
 # ---- MODEL ACCURACY ---- 
 
 results_blr <- blr_palmetto %>% 
@@ -259,6 +265,6 @@ results_blr <- blr_palmetto %>%
 results_blr
 ```
 
-# Citation
+## Citation
 Abrahamson, W.G. 2019. Survival, growth and biomass estimates of two dominant palmetto species of south-central Florida from 1981 - 2017, ongoing at 5-year intervals ver 1. Environmental Data Initiative.
 https://doi.org/10.6073/pasta/f2f96ec76fbbd4b9db431c79a770c4d5

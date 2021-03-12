@@ -7,7 +7,7 @@ navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "Blog"      # add
+    - text: "Data Science Portfolio"      # add
       href: blog.html   # add
     - text: "Resume"
       href: resume.html

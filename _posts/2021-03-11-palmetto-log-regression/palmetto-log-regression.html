@@ -86,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Classification of palmetto species via machine learning</title>
+  <title>Logistic regression</title>
   
-  <meta property="description" itemprop="description" content="by their morphological characteristics A short description of the post."/>
+  <meta property="description" itemprop="description" content="Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example."/>
   
   
   <!--  https://schema.org/Article -->
@@ -97,26 +97,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Carmen Galaz-García"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Classification of palmetto species via machine learning"/>
+  <meta property="og:title" content="Logistic regression"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="by their morphological characteristics A short description of the post."/>
+  <meta property="og:description" content="Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example."/>
   <meta property="og:locale" content="en_US"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Classification of palmetto species via machine learning"/>
-  <meta property="twitter:description" content="by their morphological characteristics A short description of the post."/>
+  <meta property="twitter:title" content="Logistic regression"/>
+  <meta property="twitter:description" content="Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Classification of palmetto species via machine learning"]},{"type":"character","attributes":{},"value":["by their morphological characteristics A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carmen Galaz-García"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["01-29-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Logistic regression"]},{"type":"character","attributes":{},"value":["Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example. \n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Carmen Galaz-García"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["01-29-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["palmetto-log-regression_files/anchor-4.2.2/anchor.min.js","palmetto-log-regression_files/bowser-1.9.3/bowser.min.js","palmetto-log-regression_files/distill-2.2.21/template.v2.js","palmetto-log-regression_files/figure-html5/unnamed-chunk-2-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-4-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-5-1.png","palmetto-log-regression_files/jquery-1.11.3/jquery.min.js","palmetto-log-regression_files/kePrint-0.0.1/kePrint.js","palmetto-log-regression_files/lightable-0.0.1/lightable.css","palmetto-log-regression_files/popper-2.6.0/popper.min.js","palmetto-log-regression_files/tippy-6.2.7/tippy-bundle.umd.min.js","palmetto-log-regression_files/tippy-6.2.7/tippy-light-border.css","palmetto-log-regression_files/tippy-6.2.7/tippy.css","palmetto-log-regression_files/tippy-6.2.7/tippy.umd.min.js","palmetto-log-regression_files/webcomponents-2.0.0/webcomponents.js","palmetto.csv"]}
+  {"type":"character","attributes":{},"value":["palmetto-log-regression_files/anchor-4.2.2/anchor.min.js","palmetto-log-regression_files/bowser-1.9.3/bowser.min.js","palmetto-log-regression_files/distill-2.2.21/template.v2.js","palmetto-log-regression_files/figure-html5/unnamed-chunk-2-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-3-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-4-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-5-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-6-1.png","palmetto-log-regression_files/figure-html5/unnamed-chunk-7-1.png","palmetto-log-regression_files/jquery-1.11.3/jquery.min.js","palmetto-log-regression_files/kePrint-0.0.1/kePrint.js","palmetto-log-regression_files/lightable-0.0.1/lightable.css","palmetto-log-regression_files/popper-2.6.0/popper.min.js","palmetto-log-regression_files/tippy-6.2.7/tippy-bundle.umd.min.js","palmetto-log-regression_files/tippy-6.2.7/tippy-light-border.css","palmetto-log-regression_files/tippy-6.2.7/tippy.css","palmetto-log-regression_files/tippy-6.2.7/tippy.umd.min.js","palmetto-log-regression_files/webcomponents-2.0.0/webcomponents.js","palmetto.csv","sabal.jpg","serenoa.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Classification of palmetto species via machine learning","description":"by their morphological characteristics A short description of the post.","authors":[{"author":"Carmen Galaz-García","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-29T00:00:00.000+00:00","citationText":"Galaz-García, 2021"}
+{"title":"Logistic regression","description":"Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example.","authors":[{"author":"Carmen Galaz-García","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-29T00:00:00.000+00:00","citationText":"Galaz-García, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1466,10 +1466,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Classification of palmetto species via machine learning</h1>
+<h1>Logistic regression</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>by their morphological characteristics A short description of the post.</p></p>
+<p><p>Classification of palm species via by their morphological characteristics via logistic regression. Simple machnine learning example.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1492,13 +1492,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 </nav>
 </div>
-<h1 id="introduction">Introduction</h1>
+<h2 id="introduction">Introduction</h2>
 <p>In this report we use binary logistic regression to test the feasibility of using morphological characteristics to classify whether a palmetto plant is species <em>serenoa repens</em> or species <em>sabal etonia</em>. The variables we use for this classification are the height (cm), widest length of the canopy (cm), widest width of the canopy perpendicular to the canopy length (cm) and number of green leaves (n) in a palmetto plant. Data was collected by the Archbold Biological Station in south-central Florida from 1981 through 1997 then again in 2001 and 2017.</p>
 <p>All analyses are in R version 4.0.2 using RStudio Version 1.3.1093.</p>
-<h1 id="data-exploration">Data exploration</h1>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="serenoa.jpg" width="60%" height="49%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="sabal.jpg" width="60%" height="49%" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="data-exploration">Data exploration</h2>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- DATA SELECTION ---- </span>
 
@@ -1517,7 +1526,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- GRAPH 1: CANOPY DIMENSIONS ---</span>
 
@@ -1538,13 +1547,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </details>
-<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 1.</strong> Relationship between widest length of the canopy (cm) and widest width of the canopy perpendicular to the canopy length (cm) of the palmetto plant species <em>sabal etonia</em> and <em>serenoa repens</em>. Each point indicates measurements of an individual plant. Data: Abrahamson (2019)</p>
 <p>From figure 1 we can see that canopy width and length for both plant species are positively correlated. Plants from <em>sabal etonia</em> species are slightly longer than those from <em>serenoa repens</em>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- GRAPH 2: NUMBER OF LEAVES HISTOGRAM  ---</span>
 
@@ -1564,13 +1573,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </details>
-<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <p><strong>Figure 2.</strong> Histograms of number of green leaves (n) in the palmetto plant species <em>sabal etonia</em> and <em>serenoa repens</em>. Data: Abrahamson (2019)</p>
 <p>In figure 2 we can clearly see that most <em>sabal etonia</em> plants have 5 or less green levaes. These are fewer green leaves than what <em>serenoa repens</em> plants have, <em>serenoa repens</em> plants have a median of about 7 green leaves per plant.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># --- GRAPH 3: HEIGHT</span>
 
@@ -1589,11 +1598,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </details>
-<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-5-1.png" width="624" data-distill-preview=1 /></p>
+<p><img src="palmetto-log-regression_files/figure-html5/unnamed-chunk-7-1.png" width="624" data-distill-preview=1 /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ---- DESCRIPTIVE STATISTICS ----</span>
 <span class='va'>summary_palmetto</span> <span class='op'>&lt;-</span> <span class='va'>palmetto</span> <span class='op'>%&gt;%</span> 
@@ -1627,12 +1636,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><strong>Figure 3.</strong> Height (cm) of the palmetto plant species <em>sabal etonia</em> and <em>serenoa repens</em>. Each green point indicates the height of an individual plant. Box endpoints indicate the 25th and 75th percentile values, the black line within the box indicate the median for each species. Black points at the end of the boxes indicate possible outliers. Data: Abrahamson (2019)</p>
 <p>On average <em>sabal etonia</em> plants are shorter than <em>serenoa repens</em> plants: 90.09 <span class="math inline">\(\pm\)</span> 24.17 and 92.19 <span class="math inline">\(\pm\)</span> 28.11 cm, respectively (mean <span class="math inline">\(\pm\)</span> 1 standard deviation). The absolute difference in means is 2.1 cm, so on average the <em>serenoa repens</em> plants are 2.33% taller than <em>sabal etonia</em> plants. This difference in means is significant (Welch’s two-sample t-test: t(1.19707610^{4}) = -4.44, p&lt; 0.001) however the effect size is small (Cohen’s <em>d</em> = 0.08).</p>
-<h1 id="binary-logistic-regression">Binary logistic regression</h1>
+<h2 id="binary-logistic-regression">Binary logistic regression</h2>
 <p>Based on the preliminary data visualization and analysis, it seems possible that the differences in canopy dimensions, height and number of green leaves for <em>serenoa repens</em> and <em>sabal etonia</em> plant species are significant. These characteristics could be used classify whether a palmetto plant belongs to either one of these species. To assess this we used a binary logistic regression to create a classification, the coefficients of the model are shown in the following table.</p>
 <p><strong>Table 1. </strong> Coefficients of the binary logistic regression model for classifying <em>serenoa repens</em> and <em>sabal etonia</em> palmetto plants based on their height (cm), canopy length and width (cm) and number of green leaves (n). The standard error and p-values for each coefficient are included. Data: Abrahamson (2019).</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ---- BINARY LOGISTIC REGRESSION ---- </span>
 
@@ -1753,12 +1762,12 @@ number of green leaves (n)
 </tbody>
 </table>
 </div>
-<h2 id="model-accuracy">Model accuracy</h2>
+<h3 id="model-accuracy">Model accuracy</h3>
 <p>Based on the previous binary logistic regression we constructed a probability function <span class="math inline">\(P\)</span> dependent on a plant’s height <span class="math inline">\(h\)</span> (cm), canopy length <span class="math inline">\(l\)</span> (cm), canopy width <span class="math inline">\(w\)</span> (cm) and number of green leaves <span class="math inline">\(n\)</span>. Then <span class="math inline">\(P(h,l,w,n)\)</span> is the probability that a palmetto plant with the specified measurements being a <em>serenoa repens</em>. If <span class="math inline">\(X\)</span> is an individual of species <em>serenoa repens</em> with measurements <span class="math inline">\(h, l,w\)</span> and <span class="math inline">\(n\)</span>, we consider <span class="math inline">\(X\)</span> to be correctly classified by the model if <span class="math inline">\(P(h,l,w,n)&gt;0.5\)</span>. Similarly, if <span class="math inline">\(X\)</span> is an individual of species <em>sabal etonia</em> with measurements <span class="math inline">\(h, l,w\)</span> and <span class="math inline">\(n\)</span>, we consider <span class="math inline">\(X\)</span> to be correctly classified by the model if <span class="math inline">\(P(h,l,w,n)\leq 0.5\)</span>.</p>
 <p><strong>Table 2.</strong> Number and percentages of each species correctly and incorrectly classified by the model.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
-<summary>hide</summary>
+<summary>Show code</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ---- MODEL ACCURACY ---- </span>
 
@@ -1863,7 +1872,7 @@ True
 </tbody>
 </table>
 </div>
-<h1 id="citation">Citation</h1>
+<h2 id="citation">Citation</h2>
 <p>Abrahamson, W.G. 2019. Survival, growth and biomass estimates of two dominant palmetto species of south-central Florida from 1981 - 2017, ongoing at 5-year intervals ver 1. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/f2f96ec76fbbd4b9db431c79a770c4d5" class="uri">https://doi.org/10.6073/pasta/f2f96ec76fbbd4b9db431c79a770c4d5</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

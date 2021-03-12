@@ -12,3 +12,5 @@ forcats
 broom
 kableExtra
 effsize
+knitr
+here
