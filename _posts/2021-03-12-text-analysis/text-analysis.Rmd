@@ -89,37 +89,24 @@ nrc_count <- prince_tokens %>%
   inner_join(get_sentiments("nrc")) %>% 
   count(sentiment)
 
-ggplot(data=nrc_count, aes(x=sentiment, y=n))+
+ggplot(data=nrc_count, aes(x=fct_reorder(sentiment,n), # order from high to low count 
+                           y=n))+
   geom_col(color='darkslateblue', fill='darkslateblue')+
   coord_flip() +
-  labs( y = "words with given sentiment",
+  labs( x = "sentiment",
+    y = "words with given sentiment",
           title = "Sentiment analysis in 'The Little Prince' by Antoine de Saint-Exupéry")+
   theme_minimal()
 ```
 
 
 
+```{r, preview=TRUE, eval=TRUE, echo=FALSE, fig.align="center"}
 
-
-```{r, include=FALSE}
-prince_afinn <- prince_tokens %>% 
-  inner_join(get_sentiments("afinn"))
-
-afinn_counts <- prince_afinn %>% 
-  count(word, value)
+knitr::include_graphics(here("_posts",
+                             "2021-03-12-text-analysis",
+                             "sentiment_count.png"))
 
 ```
 
 
-```{r,include=FALSE}
-# SIMPLE wordcloud
-top_100_words <- prince_tokens %>% 
-  count(word) %>% 
-  arrange(-n) %>% 
-  slice(2:101)
-
-ggplot(data = top_100_words, aes(label=word)) +
-  geom_text_wordcloud(aes(color=n, size=n))+
-  scale_size_area(max_size=7)
-
-```

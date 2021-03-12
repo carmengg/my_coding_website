@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["text-analysis_files/anchor-4.2.2/anchor.min.js","text-analysis_files/bowser-1.9.3/bowser.min.js","text-analysis_files/distill-2.2.21/template.v2.js","text-analysis_files/jquery-1.11.3/jquery.min.js","text-analysis_files/popper-2.6.0/popper.min.js","text-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","text-analysis_files/tippy-6.2.7/tippy-light-border.css","text-analysis_files/tippy-6.2.7/tippy.css","text-analysis_files/tippy-6.2.7/tippy.umd.min.js","text-analysis_files/webcomponents-2.0.0/webcomponents.js","word_cloud.png"]}
+  {"type":"character","attributes":{},"value":["sentiment_count.png","text-analysis_files/anchor-4.2.2/anchor.min.js","text-analysis_files/bowser-1.9.3/bowser.min.js","text-analysis_files/distill-2.2.21/template.v2.js","text-analysis_files/jquery-1.11.3/jquery.min.js","text-analysis_files/popper-2.6.0/popper.min.js","text-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","text-analysis_files/tippy-6.2.7/tippy-light-border.css","text-analysis_files/tippy-6.2.7/tippy.css","text-analysis_files/tippy-6.2.7/tippy.umd.min.js","text-analysis_files/webcomponents-2.0.0/webcomponents.js","word_cloud.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2165,15 +2165,20 @@ document.addEventListener('DOMContentLoaded', function() {
   <span class='fu'>inner_join</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>count</span><span class='op'>(</span><span class='va'>sentiment</span><span class='op'>)</span>
 
-<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>nrc_count</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sentiment</span>, y<span class='op'>=</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>nrc_count</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>sentiment</span>,<span class='va'>n</span><span class='op'>)</span>, <span class='co'># order from high to low count </span>
+                           y<span class='op'>=</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
   <span class='fu'>geom_col</span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'darkslateblue'</span>, fill<span class='op'>=</span><span class='st'>'darkslateblue'</span><span class='op'>)</span><span class='op'>+</span>
   <span class='fu'>coord_flip</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span> y <span class='op'>=</span> <span class='st'>"words with given sentiment"</span>,
+  <span class='fu'>labs</span><span class='op'>(</span> x <span class='op'>=</span> <span class='st'>"sentiment"</span>,
+    y <span class='op'>=</span> <span class='st'>"words with given sentiment"</span>,
           title <span class='op'>=</span> <span class='st'>"Sentiment analysis in 'The Little Prince' by Antoine de Saint-Exupéry"</span><span class='op'>)</span><span class='op'>+</span>
   <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="sentiment_count.png" width="672" data-distill-preview=1 style="display: block; margin: auto;" /></p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
