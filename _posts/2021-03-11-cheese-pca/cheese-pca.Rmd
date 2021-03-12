@@ -18,7 +18,7 @@ output:
 ---
 
 
-### Introduction
+## Introduction
 In this report we perform a principal component analysis (PCA) on the nutrition data for 45 types of cheeses and examine whether cheeses with the same country of origin form data clusters. 
 The variables used in the analysis are energy (kcal), protein (g), fat (g), carbohydrate (g) and sugar (g) present in $x$ grams of cheese. 
 We assume the quantity $x$ is the same for al cheeses, thought its value was unfortunately not found. 
@@ -33,7 +33,7 @@ All analyses are in R version 4.0.2 using RStudio Version 1.3.1093.
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval=FALSE)
+knitr::opts_chunk$set(eval=FALSE, echo = FALSE)
 
 library(tidyverse)
 library(here)
@@ -46,12 +46,12 @@ library(knitr)    # For knitting document and include_graphics function
 
 
 
-```{r, preview=TRUE, echo = FALSE, eval=TRUE, out.width = "70%", fig.align="center" }
+```{r fig.cap="'Cheese' by rjhuttondfw is licensed under CC BY 2.0", eval=TRUE,  out.extra="class=external" , out.width = "40%"}
 knitr::include_graphics(here('_posts','2021-03-11-cheese-pca','cheeses.jpg'))
 ```
 
 
-### Data wrangling
+## Data wrangling
 ```{r, echo = TRUE, code_folding=TRUE}
 # ---- DATA READING ----
 food <- read.csv(here("Task2_PCA","usda_nutrients.csv")) %>% 
@@ -83,7 +83,7 @@ cheeses <- food %>%
   relocate(origin)    # group categorical variables at beginning
 ```
 
-### Principal Component Analysis and Biplot 
+## Principal Component Analysis and Biplot 
 ```{r, echo = TRUE, code_folding=TRUE}
 # ---- PRINCIPAL COMPONENT ANALYSIS ----
 cheeses_PCA <- cheeses %>% 
@@ -106,18 +106,18 @@ cheese_biplot <- autoplot(cheeses_PCA,   # automatically recognizes PCA and does
 cheese_biplot
 ```
 
-```{r, echo = FALSE, eval=TRUE, out.width = "120%", fig.align="center" }
+```{r, eval=TRUE, layout="l-body-outset", out.width = "130%", fig.align="center", preview=TRUE }
 knitr::include_graphics(here('_posts','2021-03-11-cheese-pca','cheese_PCA.jpeg'))
 # "Cheese" by rjhuttondfw is licensed under CC BY 2.0
 ```
 
 
-**Figure 1.** PCA biplot showing the relationships between energy (kcal), protein (g), fat (g), carbohydrate (g) and sugar (g) present in $x$ grams of cheese. Each dot represents a different type of cheese. The color of a dote indicates the country of origin of the cheese. 
+**Figure 2.** PCA biplot showing the relationships between energy (kcal), protein (g), fat (g), carbohydrate (g) and sugar (g) present in $x$ grams of cheese. Each dot represents a different type of cheese. The color of a dote indicates the country of origin of the cheese. 
 
-### Exploratory Findings
+## Exploratory Findings
 
 The PCA for our cheeses data set reveals that 71.32% of the variability is explained by the first two principal components. 
-The biplot in figure 1 shows there is a similar and large variance with respect to PC1 and PC2 across energy, fat and protein content, while sugar content has a small variance. 
+The biplot in figure 2 shows there is a similar and large variance with respect to PC1 and PC2 across energy, fat and protein content, while sugar content has a small variance. 
 Figure 1 also shows the following major relations between the variables:
 
 - Sugar and protein present in cheese are negatively correlated. 
