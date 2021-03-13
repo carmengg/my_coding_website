@@ -1478,7 +1478,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
-<p>In this report we perform a text analysis on the The Little Prince, written and illustrated by Antoine de Saint Exupéry. We use the translation from the French by Katherine Woods.</p>
+<p>This is a text analysis on the The Little Prince, written and illustrated by Antoine de Saint Exupéry. We use the translation from the French by Katherine Woods.</p>
+<center>
+<img src="http://www5e.biglobe.ne.jp/~p_prince/le_petit_prince_club_prive/img/book/The%20Little%20Prince%206th.jpg" style="width:40.0%" />
+</center>
 <h2 id="text-wrangling">Text wrangling</h2>
 <div class="layout-chunk" data-layout="l-body">
 <details>
@@ -1499,8 +1502,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </details>
 </div>
-<h2 id="most-used-words">Most used words</h2>
-<p>The word “prince”, which is the most frequently used word in the text, is excluded from this analysis.</p>
+<h2 id="wordcloud-of-most-used-words">Wordcloud of most used words</h2>
+<p>The word “prince”, which is the most frequently used word in the text, is excluded from this analysis. To make the wordcloud I used the <code>ggworldcloud</code> library.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>Show code</summary>
@@ -1535,7 +1538,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><img src="word_cloud.png" width="960" data-distill-preview=1 /></p>
 </div>
 <h2 id="sentiment-analysis">Sentiment analysis</h2>
-<p>To do the sentiment analysis we used the NRC lexicon, which assigns to each word one of 10 sentiments.</p>
+<p>To do the sentiment analysis we used the NRC lexicon, which assigns to each word one of 10 sentiments and/or a negative or positive tag. As we might have suspected, The Little Prince is quite a positive book and feelings most often associated to it according to the NRC lexicon are trust, anticipation and joy.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>Show code</summary>
@@ -1559,6 +1562,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="sentiment_count.png" width="672" data-distill-preview=1 style="display: block; margin: auto;" /></p>
 </div>
+<h2 id="references">References</h2>
+<p>NRC lexicon: Crowdsourcing a Word-Emotion Association Lexicon, Saif Mohammad and Peter Turney, Computational Intelligence, 29 (3), 436-465, 2013.</p>
+<p>The The Little Prince, written and illustrated by Antoine de Saint Exupéry. Translation by Katherine Woods. Available <a href="http://blogs.ubc.ca/edcp508/files/2016/02/TheLittlePrince.pdf">here.</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

@@ -13,7 +13,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval=FALSE)
+knitr::opts_chunk$set(eval=FALSE, cache=TRUE)
 
 library(tidyverse)
 library(tidytext)
@@ -25,8 +25,11 @@ library(here)
 ```
 
 ## Introduction
-In this report we perform a text analysis on the The Little Prince,  written and illustrated by Antoine de Saint Exupéry. We use the translation from the French by Katherine Woods.
+This is a text analysis on the The Little Prince,  written and illustrated by Antoine de Saint Exupéry. We use the translation from the French by Katherine Woods.
 
+<center>
+![](`r "http://www5e.biglobe.ne.jp/~p_prince/le_petit_prince_club_prive/img/book/The%20Little%20Prince%206th.jpg"`){width=40%}
+</center>
 
 ## Text wrangling
 
@@ -45,8 +48,8 @@ prince_tokens <- data.frame(prince_text) %>%   # convert to data frame
 
 ```
 
-## Most used words
-The word "prince", which is the most frequently used word in the text, is excluded from this analysis.
+## Wordcloud of most used words
+The word "prince", which is the most frequently used word in the text, is excluded from this analysis. To make the wordcloud I used the `ggworldcloud` library.
 
 ```{r, code_folding= TRUE }
 # --- TOP 100 WORDS WORDCLOUD ---
@@ -82,7 +85,7 @@ knitr::include_graphics(here("_posts","2021-03-12-text-analysis","word_cloud.png
 
 ## Sentiment analysis
 
-To do the sentiment analysis we used the NRC lexicon, which assigns to each word one of 10 sentiments. 
+To do the sentiment analysis we used the NRC lexicon, which assigns to each word one of 10 sentiments and/or a negative or positive tag. As we might have suspected, The Little Prince is quite a positive book and feelings most often associated to it according to the NRC lexicon are trust, anticipation and joy. 
 
 ```{r, code_folding= TRUE }
 nrc_count <- prince_tokens %>% 
@@ -109,4 +112,8 @@ knitr::include_graphics(here("_posts",
 
 ```
 
+## References
 
+NRC lexicon: Crowdsourcing a Word-Emotion Association Lexicon, Saif Mohammad and Peter Turney, Computational Intelligence, 29 (3), 436-465, 2013.
+
+The The Little Prince, written and illustrated by Antoine de Saint Exupéry. Translation by Katherine Woods. Available [here.](http://blogs.ubc.ca/edcp508/files/2016/02/TheLittlePrince.pdf)
