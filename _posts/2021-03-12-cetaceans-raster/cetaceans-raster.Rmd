@@ -1,0 +1,107 @@
+---
+title: "Raster map: cetacean species richness in California"
+description: |
+   A raster map created using the probability of occurrence of 35 cetacean species found in the California Bight. 
+author:
+  - name: Carmen Galaz-García
+    url: {}
+date: 03-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+
+library(raster)
+library(tidyverse)
+library(here)
+library(sf)
+library(fasterize)
+library(rnaturalearth)
+library(sp)
+```
+
+## Introduction
+
+In this report we create a map showing the cetacean species richness at the California Coast. 
+This map was created using the probability of occurrence (based on relative environmental suitability, including species preferences for water temperature, depth, salinity, and distance to land) of 35 cetacean species that can be found in the California Bight. 
+The extent of the rasters used is 125° W to 115°W and 32°N to 38°N.
+
+All plots are made using R version 4.0.2 using RStudio Version 1.3.1093.
+
+
+## Data preparation
+
+```{r}
+# ----- READ IN RASTER FILES -----
+raster_files <-list.files(path = here("_posts",
+                                      "2021-03-12-cetaceans-raster",
+                                      "ca_cetaceans"), 
+                          full.names = TRUE)
+
+all_whales <- raster::stack(raster_files)
+plot(all_whales)
+```
+
+**Figure 1.** Maps of occurrence probability of the 35 cetacean species considered.
+
+```{r}
+# ----- CALCULATING PRESENCE -------
+
+# determines presence if probability of sighting is >= thresh
+presence <- function(x, thresh = 0.8) {
+  return(ifelse(x >= thresh, 1, NA))
+}
+
+presence_layers <- calc(all_whales, fun=presence)
+#plot(presence_layers)
+
+#----- CALCULATING DIVERSITY --------
+diversity <- calc(presence_layers, fun=sum, na.rm=TRUE)
+#plot(diversity)
+
+# assigns NA if value at point is 0
+zero2NA <- function(x){
+  return(ifelse(x==0, NA, x))
+}
+
+diversity <-calc(diversity, fun=zero2NA) # masking
+
+```
+
+## Raster map
+
+```{r, preview=TRUE}
+# ---- RASTER + SHAPEFILE MAP ----
+
+#convert raster to data frame
+diversity_df <- raster::rasterToPoints(diversity) %>%
+  as.data.frame()
+
+# coord limits
+xlim <- c(-125,-114)
+ylim <- c(32,43) 
+
+# map
+ggplot()+
+  geom_raster(data = diversity_df, aes(x = x, y = y, fill = layer))+  
+  scale_fill_gradient(low = 'white', high = 'blue4')+
+  geom_sf(data=ne_coastline(scale = 50, returnclass = 'sf'))+
+  coord_sf(xlim=xlim, ylim=ylim)+
+  labs(x="Longitude",
+       y="Latitutde",
+       fill="Number of Cetacean Species",
+       title = "Cetaceans Species Richness in the California Coast")+
+  theme_classic()
+```
+
+**Figure 2.** This map shows the species richness of cetaceans at the California coast. Species richness is the number of cetacean species that occur at a given location. A cetacean species is considered to occur at a location if the probability of occurrence of that species in that place is greater than or equal to 0.8. Data: AquaMaps
+
+## Citation
+
+AquaMaps (Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org
+

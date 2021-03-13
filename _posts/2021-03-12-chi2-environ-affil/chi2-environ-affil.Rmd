@@ -1,0 +1,109 @@
+---
+title: "Chi-square analysis: political affiliation and environmentalist self-identification"
+description: |
+   Analysis of the relation between answers to survey questions about the respondent's self-identification in the political spectrum and as environmentalists using a chi-square test for independence
+author:
+  - name: Carmen Galaz-García
+    url: {}
+date: 12-04-2020
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set( message=FALSE )
+library(here)
+library(tidyverse)
+library(janitor)
+library(kableExtra)
+library(broom)
+
+survey <- read_csv(here("_posts",
+                      "2021-03-12-chi2-environ-affil",
+                      "conservation_survey.csv"))  # raw data
+```
+
+
+
+
+## Introduction 
+
+In this report we examine answers from the survey conducted by Chelsea Batavia and Andrews Forest LTER in August 2017 to explore "Influences on charitable giving for conservation." 
+In particular we analyze the relation between answers to survey questions about the respondent's self-identification in the political spectrum and as environmentalists. 
+To perform this analysis we use a $\chi^2$ test for independence to answer: is there an association between political affiliation (conservative or liberal-leaning) and if a person considers themself an environmentalist?
+
+All analyses are in R version 4.0.2 using RStudio Version 1.3.1093.
+
+## Exploratory findings
+
+
+```{r}
+# --- DATA WRANGLING ----
+# selecting ENV_ID and POL_OR variables and grouping conservatives/liberals 
+
+pol_env <- survey %>% 
+  select(ENV_ID, POL_OR) %>% 
+  clean_names() %>% 
+  mutate(pol_bin = case_when( pol_or<=3 ~ "Conservative", # add column with grouped pol_or
+                              5<=pol_or & pol_or<=8 ~ "Liberal")) %>% 
+  filter(is.na(pol_bin) != TRUE)   # removes answers with pol_or = 4 or >9
+
+```
+
+
+```{r}
+# --- Create counts and proportions table for political orientation/environmentalist identity
+
+# create table with counts
+pol_env_counts <- pol_env %>% 
+  janitor::tabyl(pol_bin, env_id) 
+
+# Update column names  1 = yes, 2 = no, 3 = unsure
+colnames(pol_env_counts) <- c("pol_or", "yes", "no", "unsure")   
+
+```
+
+```{r}
+# --- Chi-square test for independence
+
+pol_env_x2 <- tidy(
+  chisq.test(
+    column_to_rownames(pol_env_counts, var="pol_or"))) # make pol_orientation be the row names
+
+```
+
+
+From table 1 we can see half of the respondents who identify as conservative do not consider themselves environmentalists (50.24%, n=318), while a little more than half of those who identify as liberal do (53.57%, n=285). 
+Conservatives also tend to have a clearer opinion about whether they identify as environmentalists: 16.11% (n=102) of them were unsure in comparison with 21.43% (n=114) of liberals. 
+A $\chi^2$ test shows that the differences in the answers of liberals and conservatives to whether they self-identify as an environmentalist is significant
+($\chi^2(2)=$ `r round(pol_env_x2[1,1],2)`, p<0.001).
+
+
+**Table 1.** 
+Proportions of answers to the statement *"I consider myself an environmentalist"*,  by political affiliation group. 
+Counts are in parenthesis. 
+Data: Batavia et al. (2019)
+
+```{r, preview=TRUE}
+# Create finalized table including percentages using kable
+final_table <- pol_env_counts %>% 
+  adorn_percentages() %>%             # include proportions
+  adorn_pct_formatting(digits=2) %>% 
+  adorn_ns %>%   
+  kable( col.names = c(" ", 
+                        "Yes", 
+                        "No",
+                        "Unsure") 
+                         ) %>% 
+   kable_styling(full_width = FALSE)
+
+final_table
+```
+
+
+
+## Citations
+​Andrews Forest LTER Site and C. Batavia. 2019. Influences on charitable giving for conservation: Online survey data of 1,331 respondents across the US, August 2017 ver 3. Environmental Data Initiative. 
+https://doi.org/10.6073/pasta/926e6270e324a1322a900da14d38b96c

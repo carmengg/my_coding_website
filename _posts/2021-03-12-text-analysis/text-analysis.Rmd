@@ -1,7 +1,7 @@
 ---
 title: "Text and sentiment analysis of 'The Little Prince'"
 description: |
-  A short description of the post.
+  A sentiment analysis of The Little Prince using the NRC lexicon and a nice word cloud with the 100 mos used words in the text. 
 author:
   - name: Carmen Galaz-García
     url: {}
@@ -48,11 +48,11 @@ prince_tokens <- data.frame(prince_text) %>%   # convert to data frame
 
 ```
 
-## Wordcloud of most used words
+## Word cloud of most used words
 The word "prince", which is the most frequently used word in the text, is excluded from this analysis. To make the wordcloud I used the `ggworldcloud` library.
 
 ```{r, code_folding= TRUE }
-# --- TOP 100 WORDS WORDCLOUD ---
+# --- TOP 100 WORDS WORD CLOUD ---
 
 # select top 100 words
 top_100_words <- prince_tokens %>% 
