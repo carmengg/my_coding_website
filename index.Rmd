@@ -7,15 +7,18 @@ links:
   - label: GitHub
     url: "https://github.com/carmengg"
   - label: Email
-    url: "mailto:carmengg@math.ucsb.edu"
+    url: "mailto:c_galazgarcia@ucsb.edu"
 site: distill::distill_website
 output:
-  postcards::trestles
+  postcards::jolla
 ---
  
-I am a Mathematics PhD candidate at the University of California, Santa Barbara.  
-Currently I am learning about Environmental Data Science by  taking classes at UCSB's Bren School of Environmental Science and Management. 
+I am a Mathematics PhD candidate at the University of California in Santa Barbara  looking to apply my analytic and coding expertise to ecology and environmental science. Being convinced that scientific research can and should play a leading role in protecting nature, I’m exploring career paths that will allow me to my data science and mathematical modeling skills to an interdisciplinary working group that addresses environmental issues. 
 
-After obtaining my PhD I would like to use my mathematics and coding background to become part of an interdisciplinary working group that addresses environmental issues. 
 
 In my free time I love birding and trying out new hiking trails in Santa Barbara. 
+
+##Contact:
+
+### E-mail: carmengg '@' math '.' ucsb '.' edu 
+### Pronouns: she / ella 
