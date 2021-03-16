@@ -15,7 +15,7 @@ output:
  
 I'm Carmen, a Mathematics PhD candidate at the University of California in Santa Barbara. 
 <!-- After spending looking to apply my analytic and coding expertise to ecology and environmental science. -->
-At the moment I’m exploring career paths that will allow me to use my data science and mathematical modeling skills in an interdisciplinary working group that addresses environmental issues. 
+I am excited to enter a career path that will allow me to use my data science and mathematical modeling skills in an interdisciplinary working group that addresses environmental issues. 
 In my free time you can find me birding or trying out new hiking trails in Santa Barbara. 
 
 <!--
