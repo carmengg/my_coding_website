@@ -1,7 +1,7 @@
 ---
-title: "Principal Component Analysis (PCA)"
+title: "Principal Component Analysis (PCA): exploring similarities among cheeses"
 description: |
-   How similar are cheeses depending on their country of origin? In this project we use principal component analysis (PCA) on the nutrition data for 45 types of cheeses from 10 countries to explore this question. 
+   How similar are cheeses depending on their country of origin? This project uses principal component analysis (PCA) on the nutrition data for 45 types of cheeses from 10 countries to explore this question. 
 author:
   - name: Carmen Galaz-García
     url: {}
@@ -19,11 +19,12 @@ output:
 
 
 ## Introduction
-In this report we perform a principal component analysis (PCA) on the nutrition data for 45 types of cheeses and examine whether cheeses with the same country of origin form data clusters. 
+This report includes a principal component analysis (PCA) on the nutrition data for 45 types of cheeses and examine whether cheeses with the same country of origin form data clusters. 
 The variables used in the analysis are energy (kcal), protein (g), fat (g), carbohydrate (g) and sugar (g) present in $x$ grams of cheese. 
-We assume the quantity $x$ is the same for al cheeses, thought its value was unfortunately not found. 
-We chose the variables according to what is usually most visible in the "Nutrition Facts" label in food products. 
-A PCA analysis is appropriate given the sample size (greater than 10) and since all the indicated variables are continuous. We work under the assumption that variables are linearly related. 
+It is assumed that the quantity $x$ is the same for all cheeses.
+The variables were chosen according to what is usually most visible in the "Nutrition Facts" label in food products. 
+A PCA analysis is appropriate given the sample size (greater than 10) and since all the indicated variables are continuous. 
+The assumption that variables are linearly related is also needed.
 
 The data comes from the *Food nutrient information for raw fruits and veggies from USDA* database of the FoodData Central in the U.S. Department of Agriculture. 
 https://fdc.nal.usda.gov/index.html

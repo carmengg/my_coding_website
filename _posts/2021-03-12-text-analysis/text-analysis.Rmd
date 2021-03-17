@@ -1,7 +1,7 @@
 ---
 title: "Text and sentiment analysis of 'The Little Prince'"
 description: |
-  A sentiment analysis of The Little Prince using the NRC lexicon and a nice word cloud with the 100 mos used words in the text. 
+  A sentiment analysis of The Little Prince using the NRC lexicon and a nice word cloud with the 100 most used words in the text. 
 author:
   - name: Carmen Galaz-García
     url: {}

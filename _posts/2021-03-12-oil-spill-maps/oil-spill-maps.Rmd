@@ -1,7 +1,7 @@
 ---
-title: "Maps (GIS)"
+title: "Maps (GIS): visualizing oil spills in California"
 description: |
-  Chropleth and interactive maps exploring California oil spills.
+  Choropleth and interactive maps exploring California oil spills.
 author:
   - name: Carmen Galaz-García
     url: {}

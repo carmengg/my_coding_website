@@ -1,5 +1,5 @@
 ---
-title: "Logistic regression"
+title: "Logistic regression: classifying palm species"
 description: |
   Classification of palm species by their morphological characteristics via logistic regression. Simple machnine learning example. 
 author:
