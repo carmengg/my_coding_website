@@ -9,8 +9,8 @@ navbar:
       href: index.html
     - text: "Data Science Portfolio"      # add
       href: blog.html   # add
-    - text: "Resume"
-      href: resume/Resume.pdf
+    #- text: "Resume"
+    #  href: resume/Resume.pdf
       #href: resume.html
       #href: "http://web.math.ucsb.edu/~carmengg/CV.pdf"
 output: distill::distill_article
