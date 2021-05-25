@@ -1,4 +1,4 @@
 ---
-title: "Data Science Portfolio"
+title: "Data Analysis Portfolio"
 listing: posts
 ---
