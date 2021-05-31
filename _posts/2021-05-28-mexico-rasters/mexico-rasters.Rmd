@@ -151,8 +151,18 @@ nir <- mask(nir, mex_rast2)
 rm(mex_rast2)
 
 # --- plot
-color_graph(nir,'OrRd')
+df_nir <- nir %>% 
+  raster::rasterToPoints() %>%
+   as.data.frame()
 
+ggplot() +
+  geom_tile(data = df_nir, aes(x = x, y = y, fill = mexico_median_nir)) +
+  coord_sf(expand = 0) +
+  scale_fill_gradient(low = 'goldenrod1', high = 'red') +
+  labs(fill='NIR')+
+  theme_void()
+
+rm(df_nir)
 ```
 
 ## NDVI calculation
@@ -164,9 +174,9 @@ https://eos.com/blog/ndvi-faq-all-you-need-to-know-about-ndvi/)
 
 The NDVI is calculated using the near-infrared and red bands of the satellite image. The formula is
 $$NDVI = \frac{NIR - Red}{NIR + Red}.$$
-The following is a map that outlines zones in Mexico with dense vegetation ($0.5\leq NDVI$), made with code based on [this repository](https://github.com/oharac/esm244_w2021_lab6_rasters) by C. O'Hara.
+In this section we create a map that outlines zones in Mexico with healthy and heavy vegetation canopy ($0.5\leq NDVI$), with code based on [this repository](https://github.com/oharac/esm244_w2021_lab6_rasters) by C. O'Hara.
 
-```{r, preview=TRUE}
+```{r}
 # ---- NDVI calculation ----
 ndvi <- (nir - mex_rgb[[1]]) / (nir + mex_rgb[[1]]) 
 
@@ -184,7 +194,7 @@ df_ndvi <- ndvi %>%
   raster::rasterToPoints() %>%
   as.data.frame()
 
-
+# --- create plot 
 ggplot() +
   geom_tile(data = df_ndvi, aes(x = x, y = y, fill = layer)) +
   geom_tile(data = df_dense, aes(x = x, y = y),fill = 'green4') +
@@ -194,8 +204,57 @@ ggplot() +
   theme_void()
 ```
 
-**Fig 1.** Zones in Mexico with median dense vegetation ($0.5\leq NDVI$) in color green, from 05/01/2013 to 05/01/2014 mapped over an NDVI map of the country.
+**Fig 1.** Zones in Mexico with median healthy and heavy vegetation canopy ($0.5\leq NDVI$) in color green, from 05/01/2013 to 05/01/2014 mapped over an NDVI map of the country.
 
+
+
+
+## Vegetation density coverage
+
+We can also use the raster data to compute the percentage of the land covered by vegetation of a certain density.
+
+```{r}
+# --- Count # of pixels within each vegetation range
+veg_thresh <- c(0.2, 0.45, 0.7)
+c_sparse <- sum(veg_thresh[1]<=ndvi[] & ndvi[] <= veg_thresh[2], na.rm=TRUE)
+c_mod <- sum(veg_thresh[2]<=ndvi[] & ndvi[] <= veg_thresh[3], na.rm=TRUE)
+c_dense <- sum(veg_thresh[3]<=ndvi[] & ndvi[] <= 1, na.rm=TRUE)
+
+c_total <- sum(is.na(ndvi[]) != TRUE)
+c_nonveg <- c_total - (c_dense+c_mod+c_sparse)
+
+
+# --- Create data set
+veg_pixels <- data.frame(
+  category=c("Sparse", "Moderate", "Dense", "No vegetation"),
+  count=c(c_sparse, c_mod, c_dense, c_nonveg)
+)
+# -- add info for ring chart
+# Compute percentages
+veg_pixels$fraction = veg_pixels$count / sum(veg_pixels$count)
+# Compute the cumulative percentages (top of each rectangle)
+veg_pixels$ymax = cumsum(veg_pixels$fraction)
+# Compute the bottom of each rectangle
+veg_pixels$ymin = c(0, head(veg_pixels$ymax, n=-1))
+# Compute label position
+veg_pixels$labelPosition <- (veg_pixels$ymax + veg_pixels$ymin) / 2
+# Compute a good label
+veg_pixels$label <- paste0(veg_pixels$category, "\n value: ", round(veg_pixels$fraction*100,2), "%")
+
+ 
+# ---- Make  plot ----
+ggplot(veg_pixels, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) +
+     geom_rect() +
+     coord_polar(theta="y") +
+    geom_label( x=3.5, aes(y=labelPosition, label=label), size=3) +
+    scale_fill_manual(values = c("darkgreen", "forestgreen", "gray70", "lightgreen"))+
+    xlim(c(2, 4)) +
+    theme_void() +
+  theme(legend.position = "none")
+
+```
+
+**Figure 2.** Percentage of land in Mexico covered by dense vegetation ($0.7\leq NDVI$), moderately dense vegetation ($0.45\leq NDVI < 0.7$) and sparse vegetation ($0.2 \leq NDVI <0.45$), based on data of median satellite images (05/01/2013 to 05/01/2014).
 
 # References
 **Boundary, Mexico, 2015.** Hijmans, Robert J. and University of California, Berkeley. Museum of Vertebrate Zoology.  
