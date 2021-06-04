@@ -1,0 +1,38 @@
+---
+title: "Birds of North Campus Open Space - R Shiny app"
+description: |
+  R Shiny web app that explores 50k+ bird sightings at North Campus Open Space from the eBird database and the Santa Barbara County Breeding Bird Study. 
+author:
+  - name: Carmen Galaz-García
+    url: {}
+date: 04-20-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(here)
+
+```
+
+```{r,preview=TRUE, out.width = "45%", out.height="35%", fig.align="center"}
+
+kites <- here('_posts','2021-06-04-ncos-shiny-app','IMG_1677.jpg')
+knitr::include_graphics(kites)
+```
+
+<br>
+
+
+Birding is one of my favorite hobbies, and UCSB's North Campus Open Space is one of my favorite places for this activity! So I was happy to collaborate with ecological restoration expert A. Kreisberg to make this R Shiny web app that explores bird sightings at this unique environmental preserve. 
+
+# Click on the gif below to access the app!
+
+<br>
+<br>
+
+
+[![Click here to see app](ncos_app.gif)](https://carmengg.shinyapps.io/244-shiny-app/)

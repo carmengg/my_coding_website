@@ -1,5 +1,5 @@
 ---
-title: "Normalized Differential Vegetation Index in Mexico (remote sensing analysis)"
+title: "Normalized Differential Vegetation Index in Mexico - Remote Sensing Analysis"
 description: |
   This project shows the analysis of Landsat 8 satellite images of Mexico to calculate the NDVI. It includes preliminary raster manipulation from raster files I created using Google Earth Enginle.
 author:
@@ -176,7 +176,7 @@ The NDVI is calculated using the near-infrared and red bands of the satellite im
 $$NDVI = \frac{NIR - Red}{NIR + Red}.$$
 In this section we create a map that outlines zones in Mexico with healthy and heavy vegetation canopy ($0.5\leq NDVI$), with code based on [this repository](https://github.com/oharac/esm244_w2021_lab6_rasters) by C. O'Hara.
 
-```{r}
+```{r, preview=TRUE}
 # ---- NDVI calculation ----
 ndvi <- (nir - mex_rgb[[1]]) / (nir + mex_rgb[[1]]) 
 
